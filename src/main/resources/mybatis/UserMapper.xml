@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webdemo.Mapper.UserMapper">
+
+<select id="queryUserList" resultType="User">
+     select * from logim
+</select>
+
+<select id="queryUserByname" resultType="User" parameterType="String">
+     select * from logim where username=#{username}
+</select>
+     <insert id="insertUser1" parameterType="User">
+    insert into logim (username,password,privilege,realname,field,id,qq,email,images)values(#{username},
+    #{password},#{privilege},#{realname},#{field},#{id},#{qq},#{email},#{images})
+</insert>
+</mapper>

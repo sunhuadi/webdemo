@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webdemo.Mapper.StudentMapper">
+    <select id="queryStuList" resultType="Student">
+     select * from student
+</select>
+    <select id="queryStuListByyear" resultType="Student" parameterType="String">
+     select * from student where year =#{year}
+     order by (substring_index(id,'CS',-1)+0)
+</select>
+
+<select id="queryStuListByyearanddestination" resultType="Student" parameterType="String">
+     select * from student where year =#{year} and destination=#{destination}
+     order by (substring_index(id,'CS',-1)+0)
+</select>
+
+    <select id="queryAnalyzeDestination" resultType="Analyze" parameterType="String">
+     select destination as name,count(*) as summ from  student
+     where year=#{year} and destination is not null
+     GROUP BY destination
+     order by destination
+</select>
+
+
+<select id="queryAnalyzePlace" resultType="Analyze" parameterType="String">
+     select substr(Wcompany,1,2) as name,count(*) as summ from  student
+     where  Wcompany is not null
+     GROUP BY substr(Wcompany,1,2)
+
+</select>
+    <select id="queryAnalyzeVcompany" resultType="Analyze" parameterType="int">
+     select Vcompany as name,count(*) as summ from  student
+     where  Vcompany is not null and year =#{year}
+     GROUP BY Vcompany
+</select>
+
+<select id="queryAnalyzeYearByCcompany" resultType="Analyze" parameterType="String">
+     select year as name,count(*) as summ from  student
+     where  year is not null and Ccompany=#{Ccompany}
+     GROUP BY year
+</select>
+    <select id="queryCcompanyAll" resultType="Allinformation">
+     select Ccompany as name,count(*) as num from  student
+     where  Ccompany is not null
+     GROUP BY Ccompany
+</select>
+    <select id="querydestinationAll" resultType="Allinformation">
+     select destination as name,count(*) as num from  student
+     where  destination is not null
+     GROUP BY destination
+</select>
+
+
+
+    <select id="queryStuByIdYear" resultType="Student" parameterType="String">
+     select * from student where year =#{year} and id=#{id}
+</select>
+
+<insert id="addStu" parameterType="Student">
+    insert into student (year,id,sex,destination,Acompany,Wcompany,Bcompany,Ccompany,Vcompany,Hcompany)values(#{year},
+    #{id},#{sex},#{destination},#{Acompany},#{Wcompany},#{Bcompany},#{Ccompany},#{Vcompany},#{Hcompany})
+
+</insert>
+    <select id="queryStuById" parameterType="String" resultType="Student">
+     select * from student where id=#{id}
+</select>
+    <update id="updateStuById" parameterType="Student">
+        update student set
+        year=#{year},id=#{id},sex=#{sex},destination=#{destination},Acompany=#{Acompany},Wcompany=#{Wcompany},Bcompany=#{Bcompany},Ccompany= #{Ccompany},Vcompany=#{Vcompany},Hcompany=#{Hcompany}
+        where id=#{id} and year =#{year}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete from student where id=#{id}
+    </delete>
+    <delete id="deleteByIdYear" parameterType="String">
+        delete from student where id=#{id}and year=#{year}
+    </delete>
+
+</mapper>

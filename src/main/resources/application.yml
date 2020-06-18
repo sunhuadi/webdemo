@@ -1,0 +1,14 @@
+Spring:
+  thymeleaf:
+    cache:false
+  http:
+    multtipart:
+      max-file-size:50MB
+web:
+  upload-path: /home/shd/
+
+spring:
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path}

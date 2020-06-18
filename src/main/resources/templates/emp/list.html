@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>毕业生信息查询</title>
+		<!-- Bootstrap core CSS -->
+		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link th:href="@{/css/dashboard.css}" rel="stylesheet">
+		<style type="text/css">
+			/* Chart.js */
+			
+			@-webkit-keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			@keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			.chartjs-render-monitor {
+				-webkit-animation: chartjs-render-animation 0.001s;
+				animation: chartjs-render-animation 0.001s;
+			}
+		</style>
+	</head>
+
+	<body th:background="@{\images\0007.gif}">
+	<div th:replace="~{commons/commons::topbar}"></div>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div th:insert="~{commons/commons::sidebar(active='emp')}"></div>
+
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+						<h1 class="h2" th:text="${year}+'年学生信息查询'"></h1>
+					</div><!-- Single button -->
+					<div class="btn-group">
+						<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${year}+'年'">
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu"aria-labelledby="dropdownMenuDivider">
+							<!--<option th:each="AlCcompany:${Allccompany}" th:text="${AlCcompany.getName()}"></option>-->
+							<div><a class="btn btn-sm btn-success" th:text="2016年" th:href="@{/emps.html/2016}"></a></div>
+							<div><a class="btn btn-sm btn-success" th:text="2017年" th:href="@{/emps.html/2017}"></a></div>
+							<div><a class="btn btn-sm btn-success" th:text="2018年" th:href="@{/emps.html/2018}"></a></div>
+							<li role="separator" class="divider"></li>
+						</ul>
+					</div>
+					<div class="btn-group" style="position:absolute;">
+					<button type="button" class="btn btn-primary dropdown-toggle" style="margin-left: 1cm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="毕业去向">
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu"  aria-labelledby="dropdownMenuDivider">
+						<!--<option th:each="AlCcompany:${Allccompany}" th:text="${AlCcompany.getName()}"></option>-->
+						<div><a class="btn btn-sm btn-primary" th:each="Ad:${destinationAll}" th:text="${Ad.getName()}" th:href="@{'/emps.html/'+${year}+'/'+${Ad.getName()}}">Action</a></div>
+						<li role="separator" class="divider"></li>
+					</ul>
+
+					<a class="btn btn-sm btn-danger" style="margin-left: 1cm" th:href="@{'/add.html/'+${year}+'/'+${session.role}}">添加学生</a>
+					</div>
+
+
+					<b><p align="center"   class="alert alert-warning" role="alert"  th:text="${rolemsg}" th:if="${not #strings.isEmpty(rolemsg)}"></p></b>
+					<div class="table-responsive" style="margin-top: 1cm">
+						<table class="table table-striped table-sm">
+							<thead>
+								<tr>
+									<th>年度</th>
+									<th>学号</th>
+									<th>性别</th>
+									<th>毕业去向</th>
+									<th>实际单位</th>
+									<th>单位所在地</th>
+									<th>单位隶属</th>
+									<th>单位性质</th>
+									<th>单位类型</th>
+									<th>行业性质</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="emp:${emps}">
+									<td th:text="${emp.getYear()}"/>
+									<td th:text="${emp.getId()}"/>
+									<td th:text="${emp.getSex()}"/>
+									<td th:text="${emp.getDestination()}"/>
+									<td th:text="${emp.getAcompany()}"/>
+									<td th:text="${emp.getWcompany()}"/>
+									<td th:text="${emp.getBcompany()}"/>
+									<td th:text="${emp.getCcompany()}"/>
+									<td th:text="${emp.getVcompany()}"/>
+									<td th:text="${emp.getHcompany()}"/>
+									<td>
+										<a class="btn btn-sm btn-primary" th:href="@{'/emp/'+${year}+'/'+${emp.getId()}+'/'+${session.role}}">编辑</a>
+										<a class="btn btn-sm btn-danger" th:href="@{'/delemp/'+${year}+'/'+${emp.getId()}+'/'+${session.role}}">删除</a>
+									</td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</main>
+			</div>
+		</div>
+
+		<!-- Bootstrap core JavaScript
+    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+	<script type="text/javascript" th:src="@{/js/jquery-3.2.1.slim.min.js}" ></script>
+	<script type="text/javascript" th:src="@{/js/popper.min.js}" ></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}" ></script>
+
+	<!-- Icons -->
+	<script type="text/javascript" th:src="@{/static/js/feather.min.js}" ></script>
+
+
+
+	<!-- Graphs -->
+
+	</body>
+
+</html>

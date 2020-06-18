@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head >
+    <meta charset="UTF-8">
+    <div class="row bg"></div>
+    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
+    <title>注册</title>
+    <link rel="stylesheet" th:src="@{/css/font.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/xadmin.css}">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+    <link rel="stylesheet" th:href="@{/css/semantic.min.css}">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script th:src="@{/css/semantic.min.js}"></script>
+
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/map.css}">
+    <link rel="stylesheet" th:href="@{/css/bg.css}">
+    <script th:src="@{/js/china.js}" charset="utf-8"></script>
+    <script th:src="@{/js/echarts.js}" charset="utf-8"></script>
+    <script th:src="@{/js/echarts.min.js}" charset="utf-8"></script>
+    <script th:src="@{/js/jquery.min.js}" charset="utf-8"></script>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+
+</head>
+
+<body  class="row bg" >
+<div class="login layui-anim layui-anim-up" >
+        <div class="message">毕业生管理系统用户注册</div>
+        <div id="darkbannerwrap"> </div>
+    <div align="center" class="alert alert-warning" role="alert" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></div>
+    <form th:action="@{/signup} " enctype="multipart/form-data" method="post">
+        <div class="form-group" method="post">
+            <label for="exampleInputName2">用户名</label>
+            <input type="text" class="form-control"name="username" id="exampleInputName2" placeholder="username">
+        </div>
+
+        <div class="form-group">
+            <label >密码</label>
+            <input type="password" class="form-control" placeholder="Password" name="password">
+        </div>
+        <div class="form-group">
+            <label >再次输入密码</label>
+            <input type="password" class="form-control"  placeholder="Password" name="repassword">
+        </div>
+        <div class="form-group">
+            <label >姓名</label>
+            <input type="text" class="form-control"  placeholder="小明" name="realname">
+        </div>
+
+        <div class="form-group">
+            <label >QQ</label>
+            <input type="number" class="form-control"  placeholder="1024117065" name="qq">
+        </div>
+        <div class="form-group">
+            <label >学号</label>
+            <input type="text" class="form-control"  placeholder="1707010327" name="id">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">请输入你的邮箱</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email">
+        </div>
+        <div class="field" name="field">
+            <label>请选择你的籍贯</label>
+            <select class="ui fluid dropdown" name="field">
+                <option value="">选择籍贯</option>
+                <option value="北京">北京</option>
+                <option value="天津">天津</option>
+                <option value="上海">上海</option>
+                <option value="重庆">重庆</option>
+                <option value="河北">河北</option>
+                <option value="山西">山西</option>
+                <option value="辽宁">辽宁</option>
+                <option value="吉林">吉林</option>
+                <option value="黑龙江">黑龙江</option>
+                <option value="江苏">江苏</option>
+                <option value="浙江">浙江</option>
+                <option value="安徽">安徽</option>
+                <option value="福建">福建</option>
+                <option value="江西">江西</option>
+                <option value="山东">山东</option>
+                <option value="河南">河南</option>
+                <option value="湖北">湖北</option>
+                <option value="湖南">湖南</option>
+                <option value="广东">广东</option>
+                <option value="海南">海南</option>
+                <option value="四川">四川</option>
+                <option value="贵州">贵州</option>
+                <option value="云南">云南</option>
+                <option value="陕西">陕西</option>
+                <option value="甘肃">甘肃</option>
+                <option value="青海">青海</option>
+                <option value="台湾">台湾</option>
+                <option value="内蒙古">内蒙古</option>
+                <option value="广西">广西</option>
+                <option value="西藏">西藏</option>
+                <option value="宁夏">宁夏</option>
+                <option value="新疆">新疆</option>
+                <option value="香港">香港</option>
+                <option value="澳门">澳门</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label >头像</label>
+            <input type="file" name="myfile">
+            <p class="help-block">请选择一个图像</p>
+        </div>
+
+        <button type="submit" style="margin-left: 1cm" class="btn btn-success">提交</button>
+        <button type="button"  style="margin-left: 3cm"  class="btn btn-primary"  onclick="window.location.href = '/'">返回</button>
+    </form>
+
+
+</div>
+</body>
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/china.js"></script>
+<script src="js/echarts.js"></script>
+<script type="text/javascript" th:src="@{/js/jquery-3.2.1.slim.min.js}" ></script>
+<script type="text/javascript" th:src="@{/js/popper.min.js}" ></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}" ></script>
+
+<!-- Icons -->
+<script type="text/javascript" th:src="@{/static/js/feather.min.js}" ></script>
+
+<script>
+    feather.replace()
+</script>
+</html>

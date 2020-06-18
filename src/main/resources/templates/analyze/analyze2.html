@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>学生毕业工作单位类型</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+</head>
+
+<body th:background="@{\images\0007.gif}">
+<!--顶部导航栏-->
+<div th:replace="~{commons/commons::topbar}"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--侧边栏-->
+        <div th:replace="~{commons/commons::sidebar(active='Bingtu')}"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h1 class="h2" th:text="${year}+'年毕业生工作单位类型'"></h1>
+            </div>
+            <a class="btn btn-sm btn-success" th:href="@{/Bingtu/2016}">2016年</a>
+            <a class="btn btn-sm btn-success" th:href="@{/Bingtu/2017}">2017年</a>
+            <a class="btn btn-sm btn-success" th:href="@{/Bingtu/2018}">2018年</a>
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" th:src="@{/js/jquery-3.2.1.slim.min.js}" ></script>
+<script type="text/javascript" th:src="@{/js/popper.min.js}" ></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}" ></script>
+
+<!-- Icons -->
+<script type="text/javascript" th:src="@{/js/feather.min.js}" ></script>
+<script>
+    feather.replace()
+</script>
+
+<!-- Graphs -->
+<script type="text/javascript" th:src="@{/js/Chart.min.js}" ></script>
+
+<div class="chart-container" style=" position:absolute;height:13cm; width:26cm;margin-left: 10cm;margin-top: 1cm">
+    <canvas id="popChart" ></canvas>
+</div>
+ <script th:inline="javascript">
+    var bingtun=[[${bingtun}]]//2016
+    var bingtus=[[${bingtus}]]//
+    var popCanvas = $("#popChart");
+    var popCanvas = document.getElementById("popChart");
+    var popCanvas = document.getElementById("popChart").getContext("2d");
+    var barChart = new Chart(popCanvas, {
+        type: 'doughnut',
+        data: {
+            labels: bingtun,
+            datasets: [{
+                label: 'Population',
+                data: bingtus,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(153, 102, 255, 0.6)',
+                    'rgba(255, 159, 64, 0.6)',
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(153, 102, 255, 0.6)',
+                    'rgba(255,102,102,0.6)',
+                    'rgba(255,102,240,0.6)',
+                ]
+            }]
+        }
+    });
+</script>
+</body>
+
+</html>

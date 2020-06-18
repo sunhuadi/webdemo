@@ -1,0 +1,29 @@
+.father{
+    float: left;
+    width: 50%;
+}
+.fenliangkuai{
+    width: 20%;}
+.fenliangkuai2{
+    float: right;
+    width: 30%;
+}
+.juzhong{
+    margin-top: 30%;
+}
+
+/* 左右两侧宽度 */
+.columnside {
+    width: 40%;
+}
+
+/* 中间区域宽度 */
+.columnmiddle {
+    width: 60%;
+}
+.row.after{
+    content: "";
+    display: table;
+    clear: both;
+    background-color: #8a8a8a;
+}
