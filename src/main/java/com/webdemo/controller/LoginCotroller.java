@@ -22,7 +22,7 @@ public class LoginCotroller {
                         @RequestParam("password") String password,
                         Model model, HttpSession session) {
         User tuser = userMapper.queryUserByname(username);
-        System.out.println(tuser);
+       // System.out.println(tuser);
         if(tuser!=null&&tuser.getPassword().equals(password)){
             session.setAttribute("loginUser",username);
             if(tuser.getPrivilege().equals("0"))
@@ -107,7 +107,6 @@ public class LoginCotroller {
             String path=new String();
             try{
                 in=file.getInputStream();
-
                File targetFile=new File("images/user/"+file.getOriginalFilename());//服务器上传方式
                // File targetFile=new File("src\\main\\resources\\static\\images\\user\\"+file.getOriginalFilename());//本地上传方式
                 path="images/user/"+file.getOriginalFilename();
